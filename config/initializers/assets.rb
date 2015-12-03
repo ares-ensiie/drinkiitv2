@@ -2,11 +2,12 @@
 
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
-Rails.application.config.assets.precompile += %w( materialize.css )
 Rails.application.config.assets.precompile += %w( style.css )
 Rails.application.config.assets.precompile += %w( equipe.css )
-Rails.application.config.assets.precompile += %w( materialize.js )
-Rails.application.config.assets.precompile += %w( init.js )
+Rails.application.config.assets.precompile += %w( users.css )
+Rails.application.config.assets.precompile += %w( welcome.css)
+Rails.application.config.assets.precompile += %w( categories.css )
+Rails.application.config.assets.precompile += %w( table.css )
 Rails.application.config.assets.precompile += %w( welcome.js )
 
 Rails.application.config.assets.paths << Rails.root.join('/app/assets/fonts')

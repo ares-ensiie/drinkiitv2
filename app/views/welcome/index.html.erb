@@ -1,19 +1,23 @@
+<%= stylesheet_link_tag 'welcome' %>
 <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-        <h1 class="header center red-text">Bienvenue sur Drinkiit</h1>
+        <h1 class="header center drinkiit-brown">Bienvenue sur Drinkiit</h1>
+        <!-- <h4 class="center white-text"><%=@user.fullname %></h2> -->
         <div class="row center">
-          <h5 class="header col s12 light">Le site de commande en ligne du célèbre club</h5>
+          <h5 class="header col s12 light">le site de commande en ligne du célèbre club</h5>
         </div>
         <div class="row center">
-          <a href="#" id="btn-connexion" class="btn-large waves-effect waves-red red lighten-1">Connexion</a>
+          <a href="#!" id="btn-connexion" class="btn-large waves-effect waves-light red">commander</a>
         </div>
         <br><br>
 
       </div>
     </div>
-    <div class="parallax"><%= image_tag "background1.jpg" %></div>
+    <div class="parallax">
+      <%= image_tag "background1.jpg" %>     
+    </div>
 </div>
 
 <div class="container">

@@ -1,0 +1,5 @@
+Materialize.toast('Modifications enregistrées !', 4000, "blue");
+$('button[type=submit]').toggleClass('disabled');
+$('button[type=submit]').prop('disabled', true);
+$('.tooltipped').tooltip('remove');
+$('.tooltipped').tooltip({delay: 50});

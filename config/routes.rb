@@ -3,8 +3,25 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  get "welcome/equipe"
-  
+  get "/equipe" => 'welcome#equipe'
+  get '/callback' => 'welcome#callback'
+  get '/users' => 'users#index'
+  patch '/users' => 'users#update', :as => 'update_user'
+  delete '/users' => 'users#destroy', :as => 'delete_user'
+  post '/users' => 'users#create', :as => 'create_user'
+  get 'users/new' => 'users#new', :as => 'new_user'
+  get 'order/categories' => 'categories#index'
+  get 'order/categories/content' => 'categories#show', :as => 'show_category'
+  patch 'order/categories' => 'categories#update', :as => 'update_category'
+  get 'meal/new' => 'meals#new', :as => 'new_meal'
+  post '/meals' => 'meals#create', :as => 'create_meal'
+  delete '/meals' => 'meals#destroy', :as => 'delete_meal'
+  post '/orders' => 'orders#create', :as => 'create_order'
+  delete '/orders' => 'orders#destroy', :as => 'delete_order'
+  get '/orders' => 'orders#show', :as => 'show_orders'
+  get '/orders/all' => 'orders#index', :as => 'orders'
+  patch '/orders/validate' => 'orders#validate', :as => 'validate_order'
+
   root 'welcome#index'
 
   # Example of regular route:

@@ -1,4 +1,4 @@
-@import "materialize";
+@import 'materialize';
 
 @font-face{
 	font-family: 'Intro';
@@ -10,10 +10,17 @@
 body{
 	background: image-url('background.jpg');
 	background-repeat: repeat;
+	font-family: 'Roboto Light' !important;
 	min-height: 20em;
 	height: auto;
 	/* border : solid 1px blue; */
 
+}
+
+.drinkiit-brown
+{
+	font-family: 'Intro' !important;
+	color: #422918;
 }
 
 .drinkiit-logo
@@ -28,18 +35,18 @@ body{
 .drinkiit-navbar
 {
 	margin-top: 2%;	
-	margin-bottom: 2%;
+	margin-bottom: 2%;	
 }
 
 .drinkiit-navbar li a
 {	
 	font-family: 'Intro' !important;
 	color: #422918;
-	font-size: 1.1em;
+	font-size: inherit;
 	text-transform: uppercase;
 }
 
-.drinkiit-navbar li a:hover
+.drinkiit-navbar > nav > div > ul > li > a:hover
 {	
 	box-shadow: 0px 4px rgb(231,56,52);
 	-webkit-transition : 0.2s linear;
@@ -62,8 +69,19 @@ body{
 
 .drinkiit-menu
 {
-	/*padding-top:5px;
-	border-top: 2px solid white;*/
+	background-color: #F0F0F0;
+}
+
+ul.dropdown-content li a
+{
+	font-size: 0.9em;
+	text-align: center;
+	color: #26a69a;
+}
+
+ul.dropdown-content li a:hover
+{
+	background-color: #F0F0F0;
 }
 
 .fixed-width
@@ -90,4 +108,25 @@ body{
 .star-icon:hover
 {
 	background-color: rgba(0,0,0,0);
+}
+
+.content
+{
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-bottom: 5%;
+}
+
+.form
+{
+	padding: 0% 20% 20% 20%;
+}
+
+.table-header
+{
+	border-bottom: 1px solid black;
+}
+
+a.disabled {
+    pointer-events: none;
 }
