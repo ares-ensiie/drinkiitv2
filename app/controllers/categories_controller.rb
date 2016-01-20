@@ -14,15 +14,15 @@ class CategoriesController < ApplicationController
 			@order = Order.new
 			@order.quantity = 1
 			@order.user_id = current_user.id
-			@standalones = Meal.get_standalones_for(@category.id)
-			@composed = Meal.get_composed_meals_for(@category.id)
+			@standalones = @category.meals.select { |meal| meal.standalone == true }
+			@composed = @category.meals.select { |meal| meal.standalone == false }
 		else
 			redirect_to root_path
 		end
 	end
 
 	def update
-		if signed_in?
+		if signed_in? && current_user.admin
     		@category.update(category_params)
     		@categories = Category.order('name')
     	end

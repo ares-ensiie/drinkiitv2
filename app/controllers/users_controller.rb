@@ -44,14 +44,25 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    @user.update(user_params)
+    @success = true
+    @message = 'Modifications enregistrées !'
+    if !@user.update(user_params)
+      @success = false
+      @message = 'Une erreur est survenue !'
+    end
   end
 
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
-    set_promos
+    @success = true
+    @message = 'Utilisateur supprimé !'
+    if !@user.destroy
+      @success = false
+      @message = 'Une erreur est survenue !'
+    else
+      set_promos
+    end
   end
 
   private

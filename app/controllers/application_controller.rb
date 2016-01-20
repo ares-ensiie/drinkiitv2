@@ -9,6 +9,11 @@ class ApplicationController < ActionController::Base
   	@current_user ||= User.find_by(id: session[:user_id])
   end
 
+  def set_success(value, message)
+    @success = value
+    @message = message
+  end
+
   def signed_in?
   	!session[:user_id].nil?
   end

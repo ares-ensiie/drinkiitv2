@@ -2,23 +2,43 @@ class MealsController < ApplicationController
 	before_action :set_meal, only: [:update, :destroy]
 
 	def new
-		@meal = Meal.new
-		@meal.category_id = params[:category_id]
-		@meal.standalone = params[:standalone]
+    if signed_in?
+  		@meal = Meal.new
+  		@meal.category_id = params[:category_id]
+  		@meal.standalone = params[:standalone]
+    else
+      redirect_to root_path
+    end
 	end
 
 	def update
 	end
 
-	def create   
-    @meal = Meal.new(meal_params)
-    @meal.save
-    set_menu
+	def create
+    if signed_in?
+      set_success(true, "Plat créé avec succès !")
+      @meal = Meal.new(meal_params)
+      if @meal.save
+        set_menu
+      else
+        set_success(false, "Erreur lors de la création du plat")
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   def destroy
-    set_menu
-    @meal.destroy
+    if signed_in?
+      set_success(true, "Plat supprimé !")
+      if @meal.destroy
+        set_menu
+      else
+        set_success(false, "Une erreur est survenue lors de la suppression")
+      end
+    else
+      redirect_to root_path
+    end
   end
 
 	private
@@ -29,11 +49,11 @@ class MealsController < ApplicationController
     end
 
     def set_menu
-      @standalones = Meal.get_standalones_for(@meal.category_id)
-      @composed = Meal.get_composed_meals_for(@meal.category_id)
+      @category = @meal.category
+      @standalones = @category.meals.select { |meal| meal.standalone == true }
+      @composed = @category.meals.select { |meal| meal.standalone == false }
       @order = Order.new
       @order.quantity = 1
-      @category = Category.find(@meal.category_id)
     end
 
     def meal_params

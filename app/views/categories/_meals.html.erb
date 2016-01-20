@@ -47,16 +47,24 @@
 		<div class="row new_meal" id="nomargin" style="display: none;">
 			<!-- Ligne pour ajouter un plat	-->
 		</div>
+		<br>
 	</div>
 <% end %>
-<% if current_user.admin %>
-	<%= link_to 'Ajouter un plat (sans recette)', new_meal_path(:category_id => @category.id, :standalone => true), remote: true %>
-<% end %>
+<div class="center" id="actions">
+	<% if current_user.admin %>
+		<%= link_to new_meal_path(:category_id => @category.id, :standalone => true), :class => "btn-floating tooltipped waves-effect waves-circle waves-light", :data => { :delay => "20", :position => "bottom", :tooltip => "Ajouter un plat (sans recette)", :remote => true} do %>
+			<i class = "material-icons">add</i>
+		<% end %>
+	<% end %>
+</div>
 
-<% if !@composed.nil? %>
+<% if !@composed.empty? %>
 
 	<% @composed.each do |meal| %>
 		<h4>Composez votre <%= meal.description %></h4>
 	<% end %>
 
+<% end %>
+<% if current_user.admin %>
+	<%= link_to 'Ajouter un plat (avec recette)', new_meal_path(:category_id => @category.id, :standalone => false), remote: true %>
 <% end %>

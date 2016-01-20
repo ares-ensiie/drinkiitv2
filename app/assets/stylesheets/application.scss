@@ -10,7 +10,7 @@
 body{
 	background: image-url('background.jpg');
 	background-repeat: repeat;
-	font-family: 'Roboto Light' !important;
+	/*font-family: 'Roboto Light' !important;*/
 	min-height: 20em;
 	height: auto;
 	/* border : solid 1px blue; */
@@ -32,12 +32,35 @@ body{
     display: block;
 }
 
-.drinkiit-navbar
+#placeholder
 {
-	margin-top: 2%;	
-	margin-bottom: 2%;	
+	width: 100%;
+	height: 20px;
+	position: relative;
+	z-index: 998;
 }
 
+#placeholder div
+{
+	width: 100%;
+	height: 20px;
+	background-color: #F0F0F0;
+	opacity:1;
+	position: fixed
+}
+
+
+.drinkiit-navbar
+{
+	/*margin-top: 2%;	*/
+	margin-bottom: 2%;	
+}
+.drinkiit-navbar ul.drinkiit-navbar{
+float:none !important;
+margin:0 auto;
+width:50%;
+
+}
 .drinkiit-navbar li a
 {	
 	font-family: 'Intro' !important;
@@ -54,7 +77,6 @@ body{
 	-ms-transition : 0.2s linear;
 	-o-transition : 0.2s linear;
 	transition : 0.2s linear;
-	text-shadow: 2px 2px #999;
 }
 
 .drinkiit-navbar li:hover
@@ -76,7 +98,7 @@ ul.dropdown-content li a
 {
 	font-size: 0.9em;
 	text-align: center;
-	color: #26a69a;
+	color: #c00;
 }
 
 ul.dropdown-content li a:hover
@@ -130,3 +152,5 @@ ul.dropdown-content li a:hover
 a.disabled {
     pointer-events: none;
 }
+
+/* Footer */

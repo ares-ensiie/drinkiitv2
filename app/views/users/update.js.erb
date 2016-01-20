@@ -1,5 +1,12 @@
-Materialize.toast('Modifications enregistrées !', 4000, "blue");
-$('button[type=submit]').toggleClass('disabled');
-$('button[type=submit]').prop('disabled', true);
-$('.tooltipped').tooltip('remove');
-$('.tooltipped').tooltip({delay: 50});
+var color = 'blue';
+<% if !@success %>
+	color = 'red';
+<% end %>
+
+Materialize.toast('<%= j @message %>', 4000, color);
+<% if @success %>
+	$('button[type=submit]').toggleClass('disabled');
+	$('button[type=submit]').prop('disabled', true);
+	$('.tooltipped').tooltip('remove');
+	$('.tooltipped').tooltip({delay: 50});
+<% end %>

@@ -1,3 +1,4 @@
 class Ingredient < ActiveRecord::Base
-	has_one :ingredient_types
+	belongs_to :ingredient_type
+	has_and_belongs_to_many :orders
 end
