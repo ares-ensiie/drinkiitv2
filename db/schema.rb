@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20151227144926) do
     t.integer "ingredient_type_id"
   end
 
-  add_index "ingredient_types_meals", ["meal_id", "ingredient_type_id"], name: "index_meals_ingredient_types_on_meal_id_and_ingredient_type_id", using: :btree
+  add_index "ingredient_types_meals", ["meal_id", "ingredient_type_id"], name: "index_ingredient_types_meals_on_meal_id_and_ingredient_type_id", using: :btree
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "name"

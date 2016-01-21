@@ -23,7 +23,7 @@
             <div class="col s2"><%= f.number_field :solde, :step => 'any' %>€</div>
             <div class="col s1">
               <%= f.check_box :admin, :id => user.id %>
-              <label for=<%=user.id%>></label>              
+              <label for=<%=user.id%>></label>
             </div>
             <div class="col s2">
               <button class="btn-floating waves-effect waves-circle waves-light tooltipped disabled" data-position="bottom" data-delay="20" data-tooltip="Appliquer les changements" type="submit" name="commit" disabled="disabled">

@@ -1,0 +1,46 @@
+<div class="row">
+	<% @types.each do |type| %>
+		<div class="space col s4 m4 l3">	
+			<div class="card small hoverable brown darken-1">
+				<%= form_for type, url: update_type_path(:id => type.id), remote: true do |f| %>
+				<div class="input-field">
+	          		<%= f.text_field :name, :class => "card-title white-text" %>
+	          	</div>
+		        <div class="card-content white-text">
+					<%= f.text_area :description %>
+					<div class="input-field">
+						<%= f.check_box :multiple, :id => type.id %>
+              			<label for=<%=type.id%> class="white-text">Choix multiple</label>
+					</div>
+		        </div>
+		        <div class="card-action center-align">
+		          	<%= link_to 'Voir', show_ingredients_path(:id => type.id), :id =>"btn-voir", remote: true %>
+	          		<%= f.submit 'Modifier' %>
+	          		<%= link_to 'Supprimer', delete_type_path(:id => type.id), remote: true, :data => { method: 'delete', confirm: "Supprimer cette catégorie et tous ses ingrédients ?"} %>
+		        </div>
+		        <% end %>
+		  	</div>
+		</div>
+	<% end %>
+
+	<!-- Ajout d'une catégorie d'ingrédient -->
+	<div class="space col s4 m4 l3">
+		<div class="card small hoverable blue-grey darken-1">
+			<%= form_for @type, url: create_type_path(:id => @type.id), remote: true do |f| %>
+			<div class="input-field">
+				<%= f.text_field :name, :class => "card-title white-text" %>
+			</div>
+			<div class="card-content white-text">
+				<%= f.text_area :description %>
+				<div class="input-field">
+					<%= f.check_box :multiple %>
+          			<label for="ingredient_type_multiple" class="white-text">Choix multiple</label>
+				</div>
+			</div>
+			<div class="card-action center-align">
+				<%= f.submit "Créer" %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -4,8 +4,5 @@ var color = 'blue';
 <% end %>
 Materialize.toast("<%= j @message %>", 4000, color);
 $('.tooltipped').tooltip('remove');
-$('#content').html("<%= j (render 'ingredients') %>");
-$('.tooltipped').tooltip({delay: 50});
-$('.collapsible').collapsible({
-      accordion : false
-});
+$('#ingredients-container').html("<%= j (render 'ingredients') %>");
+initIngredients();

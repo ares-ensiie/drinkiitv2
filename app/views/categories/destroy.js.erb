@@ -1,0 +1,8 @@
+var color = "blue"
+<% if !@success %>
+	color = "red"
+<% end %>
+
+$('#content').html("<%= j (render 'categories') %>");
+Materialize.toast("<%= j (@message) %>", 4000, color);
+init();

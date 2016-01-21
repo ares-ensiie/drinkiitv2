@@ -1,32 +1,51 @@
 <% if current_user.admin %>
 
-	<div class="row">
-	<% @categories.each do |category| %>
-		<div class="space col s4">	
-			<div class="card medium hoverable brown">
-				<%= form_for category, url: update_category_path(:id => category.id), remote: true do |f| %>
-		        <div class="card-image">
-		        	<div class="layer">
-		          		<%= image_tag "categories/#{category.name}.png", :alt => "Image introuvable", :class => "backup_picture" %>
-		          	</div>
-		          <span class="card-title normal"><%= category.name %></span>
-		          <%= f.text_field :name, :class => "card-title form" %>
-		        </div>
-		        <div class="card-content white-text">
-		          <p class="normal"><%= category.description %></p>
-		          <div class="input-field">
-		          	<%= f.text_area :description, :class => "form materialize-textarea" %></p>
-		          </div>
-		        </div>
-		        <div class="card-action center">
-		          	<%= link_to 'Voir', show_category_path(:id => category.id), :id =>"btn-commander", remote: true, :class => 'async-action' %>
-	          		<a href="#" class="normal btn-admin">Modifier</a>
-	          		<%= f.submit 'Valider', :class => 'form' %>
-		        </div>
-		        <% end %>
-		  	</div>
+	<div class="row center">
+		<% @categories.each do |category| %>
+			<div class="space col s4 m4 l3">	
+				<div class="card medium hoverable brown darken-1">
+					<%= form_for category, url: update_category_path(:id => category.id), remote: true do |f| %>
+			        <div class="card-image">
+			        	<div class="layer">
+			          		<%= image_tag "categories/#{category.name}.png", :alt => "Image introuvable", :class => "backup_picture" %>
+			          	</div>
+			          <span class="card-title brown-text normal"><%= category.name %></span>
+			          <%= f.text_field :name, :class => "card-title form brown-text" %>
+			        </div>
+			        <div class="card-content white-text">
+			          <p class="normal"><%= category.description %></p>
+			          <div class="input-field">
+			          	<%= f.text_area :description, :class => "form materialize-textarea" %></p>
+			          </div>
+			        </div>
+			        <div class="card-action center">
+			          	<%= link_to 'Voir', show_category_path(:id => category.id), :id =>"btn-commander", remote: true, :class => 'async-action' %>
+		          		<a href="#" class="normal btn-admin">Modifier</a>
+		          		<%= f.submit 'Valider', :class => 'form' %>
+		          		<%= link_to 'Supprimer', delete_category_path(:id => category.id), remote: true, :class => 'async-action', :data => { method: 'delete', confirm: "Supprimer cette catégorie et tous ses produits ?"} %>
+			        </div>
+			        <% end %>
+			  	</div>
+			</div>
+		<% end %>
+
+		<!-- Ajout d'une catégorie -->
+		<div class="space col s4 m4 l3">
+			<div class="card medium hoverable blue-grey darken-1">
+				<%= form_for @category, url: create_category_path(:id => @category.id), remote: true do |f| %>
+				<div class="card-image">
+					<%= image_tag "categories/placeholder.png" %>
+					<%= f.text_field :name, :class => "card-title blue-grey-text" %>
+				</div>
+				<div class="card-content white-text">
+					<%= f.text_area :description, :class => "materialize-textarea" %>
+				</div>
+				<div class="card-action">
+					<%= f.submit "Créer" %>
+				</div>
+				<% end %>
+			</div>
 		</div>
-	<% end %>
 	</div>
 
 <% else %>

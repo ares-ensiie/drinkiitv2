@@ -1,4 +1,15 @@
-.collapsible-header
+input[type=submit]
 {
+	background-color: transparent;
 	text-transform: uppercase;
+	border: none;
+	color: #ffab40;
+	cursor: pointer;
+	padding: 0;
+	margin-right: 10px;
 }
+
+/*.card.small
+{
+	padding: 10px;
+}*/

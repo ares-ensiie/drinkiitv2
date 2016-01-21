@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'tzinfo-data'
+
 gem 'oauth2'
 
 gem 'json'

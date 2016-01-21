@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   # CategoryController
   get 'order/categories' => 'categories#index'
   get 'order/categories/content' => 'categories#show', :as => 'show_category'
+  post 'order/categories/create' => 'categories#create', :as => 'create_category'
   patch 'order/categories' => 'categories#update', :as => 'update_category'
+  delete 'order/delete' => 'categories#destroy', :as => 'delete_category'
 
   # MealController
   get 'meal/new' => 'meals#new', :as => 'new_meal'
@@ -39,10 +41,13 @@ Rails.application.routes.draw do
   post '/ingredients' => 'ingredients#create', :as => 'create_ingredient'
   delete '/ingredients' => 'ingredients#destroy', :as => 'delete_ingredient'
   get '/ingredients' => 'ingredients#index', :as => 'ingredients'
+  get '/ingredients/show' => 'ingredients#show', :as => 'show_ingredients'
   get 'ingredients/new' => 'ingredients#new', :as => 'new_ingredient'
   patch 'ingredients' => 'ingredients#update', :as => 'update_ingredient'
+  patch 'ingredienttype' => 'ingredients#updateType', :as => 'update_type'
   post '/ingredienttype' => 'ingredients#createType', :as => 'create_type'
   get 'ingredienttype/new' => 'ingredients#newType', :as => 'new_type'
+  delete 'ingredienttype/destroy' => 'ingredients#destroyType', :as => 'delete_type'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

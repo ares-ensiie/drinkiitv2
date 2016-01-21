@@ -1,9 +1,9 @@
 $(document).ready(function()
 {
-    associateBackupPictures();
+    init();
 });
 
-function associateBackupPictures(){
+function init(){
 	$(".backup_picture").error(function(){
         $(this).attr('src', '/assets/categories/placeholder.png');
     });
