@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag "categories" %>
+<h5 style="font-weight: bold;" class="center"><%= @category.name %></h5>
+<br>
+<ul class="collapsible" data-collapsible="accordion">
+	<li>
+		<% if @standalones.nil? || @standalones.empty? %>
+			<div class="collapsible-header center-align teal lighten-2 white-text" id="standalone">PRODUITS INDÉPENDANTS</div>
+		<% else %>
+			<div class="collapsible-header active center-align teal lighten-2 white-text" id="standalone">PRODUITS INDÉPENDANTS</div>
+		<% end %>
+		<div class="collapsible-body">
+			<%= render 'meals/standalones' %>
+		</div>
+	</li>
+	<li>
+		<% if @composed.nil? || @composed.empty? %>
+			<div class="collapsible-header center-align teal lighten-2 white-text" id="recipe">PRODUITS PERSONNALISABLES</div>
+		<% else %>
+			<div class="collapsible-header active center-align teal lighten-2 white-text" id="recipe">PRODUITS PERSONNALISABLES</div>
+		<% end %>
+		<div class="collapsible-body">
+			<%= render 'meals/composed' %>
+		</div>
+	</li>
+</ul>

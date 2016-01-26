@@ -4,10 +4,10 @@
 			<div class="card small hoverable brown darken-1">
 				<%= form_for type, url: update_type_path(:id => type.id), remote: true do |f| %>
 				<div class="input-field">
-	          		<%= f.text_field :name, :class => "card-title white-text" %>
+	          		<%= f.text_field :name, :class => "card-title white-text center-align" %>
 	          	</div>
 		        <div class="card-content white-text">
-					<%= f.text_area :description %>
+					<%= f.text_area :description, :class => "materialize-textarea" %>
 					<div class="input-field">
 						<%= f.check_box :multiple, :id => type.id %>
               			<label for=<%=type.id%> class="white-text">Choix multiple</label>
@@ -28,10 +28,10 @@
 		<div class="card small hoverable blue-grey darken-1">
 			<%= form_for @type, url: create_type_path(:id => @type.id), remote: true do |f| %>
 			<div class="input-field">
-				<%= f.text_field :name, :class => "card-title white-text" %>
+				<%= f.text_field :name, :class => "card-title white-text center-align" %>
 			</div>
 			<div class="card-content white-text">
-				<%= f.text_area :description %>
+				<%= f.text_area :description, :class => "materialize-textarea" %>
 				<div class="input-field">
 					<%= f.check_box :multiple %>
           			<label for="ingredient_type_multiple" class="white-text">Choix multiple</label>

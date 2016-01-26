@@ -1,0 +1,29 @@
+<div class="collapsible-header center teal lighten-2 white-text"><i class="material-icons">history</i>HISTORIQUE DES COMMANDES</div>
+<% if !@historique.empty? %>
+	<div class="collapsible-body">
+
+		<div class="row header" id="nomargin">
+			<div class="col s3">Date</div>
+			<div class="col s2">Personne</div>
+			<div class="col s3">Produit</div>
+			<div class="col s1">Quantité</div>
+			<div class="col s3">Commentaire</div>
+		</div>
+
+      	<div class="table striped">
+	      	<% @historique.each do |order| %>
+	      		<div class="row" id="nomargin">
+	      			<div class="col s3"><%= order.ordered_at %></div>
+	      			<div class="col s2"><%= order.user.fullname %></div>
+	      			<div class="col s3"><%= order.fulldescription %></div>
+	      			<div class="col s1"><%= order.quantity %></div>
+	      			<div class="col s3"><%= order.comment %></div>
+	      		</div>
+  			<% end %>
+  		</div>
+		</div>
+<% else %>
+	<div class="collapsible-body center">
+      	Aucune commande dans l'historique
+  	</div>
+<% end %>

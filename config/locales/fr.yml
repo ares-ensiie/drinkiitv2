@@ -1,0 +1,33 @@
+fr:
+ activerecord:
+  attributes:
+   category:
+    name: L'intitulé de la catégorie
+    description: La description de la catégorie
+   ingredient_type:
+    name: L'intitulé de la catégorie d'ingrédient
+    description: La description de la catégorie d'ingrédient
+    multiple: Le choix multiple
+   ingredient:
+    name: Le nom de l'ingrédient
+    ingredient_type_id: La catégorie à laquelle appartient l'ingrédient
+   meal:
+    description: Le nom du produit
+    price: Le prix
+    standalone: Le type de produit (indépendant / personnalisable)
+    category_id: La catégorie à laquelle appartient le produit
+   order:
+    quantity: La quantité
+    served: L'état de la commande (en attente / servie)
+    total: Le coût total de la commande
+    user_id: L'utilisateur qui a commandé
+    meal_id: Le contenu de la commande
+    comment: Le commentaire
+   user:
+    uid: L'identifiant ARES
+    lastname: Le nom de famille
+    name: Le prénom
+    solde: Le solde
+    admin: La catégorie d'utilisateur (admin / normal)
+    email: L'email
+    promo: La promo

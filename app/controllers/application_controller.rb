@@ -18,6 +18,33 @@ class ApplicationController < ActionController::Base
   	!session[:user_id].nil?
   end
 
+  def get_error_message(errors, model)
+    message = ""
+    if errors.nil? || errors.empty?
+      message = "Un problème inattendu est survenu"
+    else
+      errors.each do |attribut, msg|
+        case model
+        when "Category"
+          translation = Category.human_attribute_name(attribut)
+        when "Ingredient"
+          translation = Ingredient.human_attribute_name(attribut)
+        when "IngredientType"
+          translation = IngredientType.human_attribute_name(attribut)
+        when "Meal"
+          translation = Meal.human_attribute_name(attribut)
+        when "Order"
+          translation = Order.human_attribute_name(attribut)
+        when "User"
+          translation = User.human_attribute_name(attribut)
+        end
+
+        message = message + "#{translation} #{msg}"
+      end
+    end
+    message
+  end
+
   helper_method :current_user
   
 end

@@ -1,7 +1,26 @@
-Materialize.toast("Repas créé !", 4000, 'blue');
-var btnAdd = $('#actions').find('a')
-btnAdd.removeClass('disabled');
-btnAdd.prop('disabled', false);
-$('.tooltipped').tooltip('remove');
-$('#meal-container').html("<%= j (render 'categories/meals') %>");
-$('.tooltipped').tooltip({delay: 50});
+var color = "blue"
+<% if !@success %>
+	color = "red"
+<% end %>
+Materialize.toast('<%= j @message %>', 4000, color);
+<% if @success %>
+	var btnAdd = $('#actions').find('a')
+	btnAdd.removeClass('disabled');
+	btnAdd.prop('disabled', false);
+	$('.tooltipped').tooltip('remove');
+	$('#meal-container').html("<%= j (render 'meals') %>");
+
+	// Initialisation du volet ouvert en fonction du produit qui vient d'être ajouté
+	<% if @display == "recipe" %>
+		$('#standalone').removeClass('active');
+		$('#recipe').addClass('active');
+	<% end %>
+
+	// Initialisation du javascript materialize
+	$('.tooltipped').tooltip({delay: 50});
+	$('select').material_select();
+	$('.collapsible').collapsible({
+		accordion : false
+	});
+	$('ul.tabs').tabs();
+<% end %>

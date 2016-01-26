@@ -44,22 +44,18 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    @success = true
-    @message = 'Modifications enregistrées !'
+    set_success(true, 'Modifications enregistrées !')
     if !@user.update(user_params)
-      @success = false
-      @message = 'Une erreur est survenue !'
+      set_success(false, get_error_message(@user.errors, "User"))
     end
   end
 
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @success = true
-    @message = 'Utilisateur supprimé !'
+    set_success(true, 'Utilisateur supprimé !')
     if !@user.destroy
-      @success = false
-      @message = 'Une erreur est survenue !'
+      set_success(false, get_error_message(@user.errors, "Users"))
     else
       set_promos
     end
@@ -73,10 +69,9 @@ class UsersController < ApplicationController
 
     def set_promos
       promos = User.get_all_promos
-      puts promos
       @users = Hash.new('promos')
       promos.each do |promo|
-        @users[promo['promo']] = User.where('promo = ' + promo['promo'])
+        @users[promo['promo']] = User.where('promo = ' + promo['promo']).order('lastname')
       end
     end
 

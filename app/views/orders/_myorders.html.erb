@@ -3,7 +3,7 @@
 	<div class="col s1">Quantité</div>
 	<div class="col s1">Total</div>
 	<div class="col s3">Commentaire</div>
-	<div class="col s3">Actions</div>
+	<div class="col s3 center">Actions</div>
 </div>
 <ul class="collapsible" data-collapsible="accordion">
 	<li>
@@ -13,12 +13,12 @@
       <% if !(@notserved.empty?) %>
       	<% @notserved.each do |order| %>
       		<div class="row" id="nomargin">
-      			<div class="col s4"><%= order.meal.description %></div>
+      			<div class="col s4"><%= order.fulldescription %></div>
       			<div class="col s1"><%= order.quantity %></div>
       			<div class="col s1"><%= order.total %>€</div>
       			<div class="col s3"><%= order.comment %></div>
-      			<div class="col s3">
-      				<%= link_to delete_order_path(:id => order.id), :class => "btn-floating tooltipped waves-effect waves-circle waves-red red lighten-1", :data => { :method => 'delete', :tooltip => "Supprimer la commande", :delay => '20', :position => 'bottom', :confirm => "Supprimer cette commande ?", :remote => true} do %>
+      			<div class="col s3 center">
+      				<%= link_to delete_my_order_path(:id => order.id), :class => "btn-floating tooltipped waves-effect waves-circle waves-red red lighten-1", :data => { :method => 'delete', :tooltip => "Supprimer la commande", :delay => '20', :position => 'bottom', :confirm => "Supprimer cette commande ?", :remote => true} do %>
           				<i class="material-icons left">delete</i>
         			<% end %>
       			</div>
@@ -39,11 +39,11 @@
 		<% if !(@served.empty?) %>
 			<% @served.each do |order| %>
 				<div class="row" id="nomargin">
-	      			<div class="col s4"><%= order.meal.description %></div>
+	      			<div class="col s4"><%= order.fulldescription %></div>
 	      			<div class="col s1"><%= order.quantity %></div>
 	      			<div class="col s1"><%= order.total %></div>
 	      			<div class="col s3"><%= order.comment %></div>
-	      			<div class="col s3">
+	      			<div class="col s3 center">
 	      				<%= link_to delete_order_path(:id => order.id), :class => "btn-floating tooltipped waves-effect waves-circle waves-red red lighten-1 disabled", :data => { :method => 'delete', :tooltip => "Supprimer la commande", :delay => '20', :position => 'bottom', :confirm => "Supprimer cette commande ?", :remote => true} do %>
               				<i class="material-icons left">delete</i>
             			<% end %>

@@ -1,0 +1,12 @@
+var color = 'blue'
+<% if !@success %>
+	color = 'red'
+<% end %>
+
+Materialize.toast('<%= j @message %>', 4000, color);
+$('.tooltipped').tooltip('remove');
+$('#content').html("<%= j (render 'myorders') %>");
+$('.collapsible').collapsible({
+	accordion : false
+});
+$('.tooltipped').tooltip({delay: 50});

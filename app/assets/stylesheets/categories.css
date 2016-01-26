@@ -11,9 +11,9 @@
 	margin-right: 5px;
 }
 
-input[type=number]
+.table .row input[type=number]
 {
-	max-width: 40px;
+	max-width: 50px;
 }
 
 .actions
@@ -30,7 +30,7 @@ input[type=number]
 {
 	width: 100%;
 	height: 100%;
-	opacity: 0.4;
+	opacity: 0.3;
 }
 
 .card-image
@@ -41,6 +41,11 @@ input[type=number]
 .input-field
 {
 	margin-top: -10px;
+}
+
+.input-field > label
+{
+	padding-left: 10px;
 }
 
 input[type=submit]

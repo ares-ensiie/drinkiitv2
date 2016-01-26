@@ -20,10 +20,7 @@
     <ul id="dropdown-actions" class="dropdown-content">
       <li><a href="/order/categories">commander</a></li>
       <li><a href="/orders">mes commandes</a></li>
-      <li class="divider"></li>
-      <li><a href="#!">mon profil</a></li>
       <% if current_user.admin %>
-        <li class="divider"></li>
         <li><a href="/orders/all">commandes du jour</a></li>
         <li class="divider"></li>
         <li><a href="/users">gestion des utilisateurs</a></li>
@@ -48,6 +45,13 @@
       <ul class="side-nav" id="mobile">
         <li><a href="/">accueil</a></li>
         <li><a href="/equipe">l'équipe</a></li>
+        <li><a href="/order/categories">commander</a></li>
+        <li><a href="/orders">mes commandes</a></li>
+        <% if current_user.admin %>
+          <li><a href="/orders/all">commandes du jour</a></li>
+          <li><a href="/users">utilisateurs</a></li>
+          <li><a href="/ingredients">ingrédients</a></li>
+        <% end %>
         <li><a href="#">solde : <%= current_user.solde %> €</a></li>
       </ul>
     </div>

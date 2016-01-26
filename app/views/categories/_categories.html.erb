@@ -6,8 +6,14 @@
 				<div class="card medium hoverable brown darken-1">
 					<%= form_for category, url: update_category_path(:id => category.id), remote: true do |f| %>
 			        <div class="card-image">
+			        	<div class="fileWrapper form">
+			        		<%= f.file_field :image %>
+			        	</div>
+			        	<div class="transparent right-align form" style="padding: 2px; position: absolute; width: 100%; z-index: 1;">
+			        		<a href="#" class="brown-text"><i class="material-icons right">insert photo</i></a>		        		
+		        		</div>
 			        	<div class="layer">
-			          		<%= image_tag "categories/#{category.name}.png", :alt => "Image introuvable", :class => "backup_picture" %>
+			          		<%= image_tag category.image.url, :alt => "Image introuvable", :class => "backup_picture" %>
 			          	</div>
 			          <span class="card-title brown-text normal"><%= category.name %></span>
 			          <%= f.text_field :name, :class => "card-title form brown-text" %>
@@ -34,7 +40,15 @@
 			<div class="card medium hoverable blue-grey darken-1">
 				<%= form_for @category, url: create_category_path(:id => @category.id), remote: true do |f| %>
 				<div class="card-image">
-					<%= image_tag "categories/placeholder.png" %>
+					<div class="fileWrapper">
+		        		<%= f.file_field :image %>
+		        	</div>
+		        	<div class="transparent right-align" style="padding: 2px; position: absolute; width: 100%; z-index: 1;">
+		        		<a href="#" class="blue-grey-text"><i class="material-icons right">insert photo</i></a>		        		
+	        		</div>
+	        		<div class="layer">
+						<%= image_tag "categories/placeholder.png", :class => "backup_picture" %>
+					</div>
 					<%= f.text_field :name, :class => "card-title blue-grey-text" %>
 				</div>
 				<div class="card-content white-text">

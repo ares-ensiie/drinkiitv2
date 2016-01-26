@@ -1,4 +1,23 @@
-Materialize.toast("Repas supprimé !", 4000, 'blue');
-$('.tooltipped').tooltip('remove');
-$('#meal-container').html("<%= j (render 'categories/meals') %>");
-$('.tooltipped').tooltip({delay: 50});
+var color = "blue"
+<% if !@success %>
+	color = "red"
+<% end %>
+
+Materialize.toast("<%= j @message %>", 4000, color);
+<% if @success %>
+	$('.tooltipped').tooltip('remove');
+	$('#meal-container').html("<%= j (render 'meals') %>");
+
+	// Initialisation du volet ouvert en fonction du produit qui vient d'être ajouté
+	<% if @display == "recipe" %>
+		$('#standalone').removeClass('active');
+		$('#recipe').addClass('active');
+	<% end %>
+
+	$('.tooltipped').tooltip({delay: 50});
+	$('select').material_select();
+	$('.collapsible').collapsible({
+		accordion : false
+	});
+	$('ul.tabs').tabs();
+<% end %>

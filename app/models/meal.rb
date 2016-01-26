@@ -2,6 +2,8 @@ class Meal < ActiveRecord::Base
 	belongs_to :category
 	has_many :orders
 	has_and_belongs_to_many :ingredient_types
+	validates :description, presence: true
+	validates :price, presence: true
 
 	class << self
 

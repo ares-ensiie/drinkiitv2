@@ -44,7 +44,7 @@ class IngredientsController < ApplicationController
 	      	@type = @ingredient.ingredient_type
 	        set_show
 	      else
-	        set_success(false, "Erreur lors de la création de l'ingrédient")
+	        set_success(false, get_error_message(@ingredient.errors, "Ingredient"))
 	      end
 	    else
 	      redirect_to root_path
@@ -58,7 +58,7 @@ class IngredientsController < ApplicationController
 	      if @type.save
 	        set_index
 	      else
-	        set_success(false, "Erreur lors de la création de la catégorie")
+	        set_success(false, get_error_message(@type.errors, "IngredientType"))
 	      end
 	    else
 	      redirect_to root_path
@@ -72,7 +72,7 @@ class IngredientsController < ApplicationController
     		if @ingredient.update(ingredient_params)
     			set_show
     		else
-    			set_success(false, "Une erreur est survenue")
+    			set_success(false, get_error_message(@ingredient.errors, "Ingredient"))
     		end
     	else
     		redirect_to root_path
@@ -85,7 +85,7 @@ class IngredientsController < ApplicationController
     		if @type.update(ingredient_type_params)
     			set_index
     		else
-    			set_success(false, "Une erreur est survenue !")
+    			set_success(false, get_error_message(@type.errors, "IngredientType"))
     		end
 		else
 			redirect_to root_path
@@ -99,7 +99,7 @@ class IngredientsController < ApplicationController
 	      if @ingredient.destroy
 	        set_show
 	      else
-	        set_success(false, "Une erreur est survenue lors de la suppression")
+	        set_success(false, get_error_message(@ingredient.errors, "Ingredient"))
 	      end
 	    else
 	      redirect_to root_path
@@ -111,14 +111,14 @@ class IngredientsController < ApplicationController
 	      set_success(true, "Catégorie supprimée !")
 	      @type.ingredients.each do |ingredient|
 	      	if !ingredient.destroy
-	      		set_success(false, "Une erreur est survenue lors de la suppression")
+	      		set_success(false, get_error_message(ingredient.errors, "Ingredient"))
 	      		return
 	      	end
 	      end
 	      if @type.destroy
 	        set_index
 	      else
-	        set_success(false, "Une erreur est survenue lors de la suppression")
+	        set_success(false, get_error_message(@type.errors, "IngredientType"))
 	      end
 	    else
 	      redirect_to root_path
@@ -158,5 +158,4 @@ class IngredientsController < ApplicationController
 		allow = [:name, :description, :multiple]
 		params.require(:ingredient_type).permit(allow)
     end
-
 end

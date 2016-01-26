@@ -26,16 +26,18 @@ Rails.application.routes.draw do
   delete 'order/delete' => 'categories#destroy', :as => 'delete_category'
 
   # MealController
-  get 'meal/new' => 'meals#new', :as => 'new_meal'
   post '/meals' => 'meals#create', :as => 'create_meal'
   delete '/meals' => 'meals#destroy', :as => 'delete_meal'
 
   # OrderController
   post '/orders' => 'orders#create', :as => 'create_order'
-  delete '/orders' => 'orders#destroy', :as => 'delete_order'
+  delete '/orders' => 'orders#destroy_in_orders', :as => 'delete_order'
+  delete '/orders/mine' => 'orders#destroy_in_my_orders', :as => 'delete_my_order'
   get '/orders' => 'orders#show', :as => 'show_orders'
   get '/orders/all' => 'orders#index', :as => 'orders'
+  get '/orders/refresh' => 'orders#refresh', :as => 'refresh_orders'
   patch '/orders/validate' => 'orders#validate', :as => 'validate_order'
+  patch '/orders/take' => 'orders#take', :as => 'take_order'
 
   # IngredientController
   post '/ingredients' => 'ingredients#create', :as => 'create_ingredient'

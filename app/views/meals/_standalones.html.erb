@@ -1,0 +1,65 @@
+<% if @standalones.empty? %>
+	<p class="center">Aucun produit n'est disponible dans cette catégorie</p>
+<% end %>
+
+<div class="row header" id="nomargin">
+	<div class="col s2">Produit</div>
+	<div class="col s2">Prix</div>
+	<div class="col s1">Quantité</div>
+	<div class="col s4">Commentaire</div>
+	<div class="col s3 center">Actions</div>
+</div>
+
+<div class="striped table">		
+<% @standalones.each do |meal| %>
+	<div class="row" id="nomargin">
+		<div class="col s2"><%= meal.description %></div>
+		<div class="col s2"><%= meal.price %> €</div>
+		<%= form_for @order, url: create_order_path, remote: true do |f| %>
+		<%= f.hidden_field :meal_id, :value => meal.id %>
+		<%= f.hidden_field :user_id %>
+		<div class="input-field col s1">				
+			<%= f.number_field :quantity, :min => "1" %>
+		</div>
+		<div class="input-field col s4">
+			<%= f.text_field :comment, :id => "order_comment_#{meal.id}", :class => "center-align" %>
+			<label for=<%= "order_comment_#{meal.id}" %>>Ajoute ton grain de sel !</label>
+		</div>
+		<div class="col s3 center">
+			<button class="btn-floating waves-effect waves-circle waves-light tooltipped" data-position="left" data-delay="20" data-tooltip="Ajouter au panier" type="submit" name="commit">
+				<i class="material-icons right">shopping_cart</i>
+			</button>
+			<% if current_user.admin %>
+				<%= link_to delete_meal_path(:id => meal.id), :class => "btn-floating tooltipped waves-effect waves-circle waves-red red lighten-1", :data => { :method => 'delete', :tooltip => "Supprimer le plat", :delay => '20', :position => 'right', :confirm => "Supprimer ce plat ?", :remote => true} do %>
+          			<i class="material-icons left">delete</i>
+        		<% end %>
+			<% end %>
+		</div>
+		<% end %>
+	</div>
+<% end %>
+
+<% if current_user.admin %>
+	<div class="row new_meal" id="nomargin">
+		<!-- Ligne pour ajouter un plat	-->
+		<%= form_for @standalone, url: create_meal_path, remote: true do |f| %>
+			<%= f.hidden_field :category_id %>
+			<%= f.hidden_field :standalone %>
+			<div class="input-field col s2">
+				<%= f.text_field :description, :id => 'meal_standalone_description', :class => "center-align" %>
+				<label for="meal_standalone_description">Nom du plat</label>
+			</div>
+			<div class="input-field col s2">
+				<%= f.number_field :price, :step => 0.1 %>€
+			</div>
+			<div class="col s1"></div>
+			<div class="col s4"></div>
+			<div class="col s3 center">
+				<button class="btn-floating waves-effect waves-circle waves-light tooltipped" data-position="bottom" data-delay="20" data-tooltip="Valider la création" type="submit" name="commit">
+					<i class="material-icons right">add</i>
+				</button>
+			</div>
+		<% end %>
+	</div>
+<% end %>
+</div>

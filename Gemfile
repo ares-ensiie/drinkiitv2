@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+gem 'paperclip', '~>4.3'
+
+gem 'remotipart'
+
+gem 'rails-i18n'
+
 gem 'tzinfo-data'
 
 gem 'oauth2'

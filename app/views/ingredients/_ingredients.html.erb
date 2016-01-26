@@ -1,27 +1,27 @@
-<div class="row header">
+<div class="row header" id="nomargin">
     <div class="col s9">Ingrédient</div>
-    <div class="col s3">Actions</div>
+    <div class="col s3 center-align">Actions</div>
 </div>
 
-<div class="striped table">
+<div class="striped table center">
 	<% @ingredients.each do |ingredient| %>
-	<div class="row">
+	<div class="row" id="nomargin">
 		<%= form_for ingredient, url: update_ingredient_path(:id => ingredient.id), remote: true do |f| %>
 			<div class="col s9">
 				<%= f.text_field :name %>
 			</div>
 			<div class="col s3">
-				<button class="btn-floating waves-effect waves-circle waves-light tooltipped submit disabled" data-position="bottom" data-delay="20" data-tooltip="Appliquer les changements" type="submit" name="commit" disabled="disabled">
+				<button class="btn-floating waves-effect waves-circle waves-light tooltipped submit disabled" data-position="left" data-delay="20" data-tooltip="Appliquer les changements" type="submit" name="commit" disabled="disabled">
                 	<i class="material-icons right">done</i>
               	</button>
-				<%= link_to delete_ingredient_path(:id => ingredient.id), :class => "btn-floating tooltipped waves-effect waves-circle waves-red red lighten-1", :data => { :method => 'delete', :tooltip => "Supprimer l'ingrédient", :delay => '20', :position => 'bottom', :confirm => "Supprimer cet ingrédient ?", :remote => true} do %>
+				<%= link_to delete_ingredient_path(:id => ingredient.id), :class => "btn-floating tooltipped waves-effect waves-circle waves-red red lighten-1", :data => { :method => 'delete', :tooltip => "Supprimer l'ingrédient", :delay => '20', :position => 'right', :confirm => "Supprimer cet ingrédient ?", :remote => true} do %>
           			<i class="material-icons left">delete</i>
         		<% end %>
 			</div>
 		<% end %>
 	</div>
 	<% end %>
-	<div class="row">
+	<div class="row" id="nomargin">
 		<%= form_for @ingredient, url: create_ingredient_path, remote: true do |f| %>
 			<%= f.hidden_field :ingredient_type_id %>
 			<div class="col s9 input-field">

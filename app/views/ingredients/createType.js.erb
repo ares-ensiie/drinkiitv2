@@ -3,4 +3,7 @@ var color = 'blue';
 	color = 'red';
 <% end %>
 Materialize.toast("<%= j @message %>", 4000, color);
-$('#content').html("<%= j (render 'ingredienttypes') %>");
+
+<% if @success %>
+	$('#content').html("<%= j (render 'ingredienttypes') %>");
+<% end %>
