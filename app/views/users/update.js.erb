@@ -5,8 +5,5 @@ var color = 'blue';
 
 Materialize.toast('<%= j @message %>', 4000, color);
 <% if @success %>
-	$('button[type=submit]').toggleClass('disabled');
-	$('button[type=submit]').prop('disabled', true);
-	$('.tooltipped').tooltip('remove');
-	$('.tooltipped').tooltip({delay: 50});
+	resetButtonsState();
 <% end %>

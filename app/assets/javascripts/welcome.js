@@ -1,7 +1,7 @@
 $(window).load(function(){
 	// $("#my_account").hide();
 	$(".wait").hide();
-	$("#team").fadeIn();
+	$('.slider').slider({full_width: true});
 });
 
 // $(document).ready(function () {

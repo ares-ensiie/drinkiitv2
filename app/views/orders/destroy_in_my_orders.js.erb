@@ -4,9 +4,8 @@ var color = 'blue'
 <% end %>
 
 Materialize.toast('<%= j @message %>', 4000, color);
+
 $('.tooltipped').tooltip('remove');
 $('#content').html("<%= j (render 'myorders') %>");
-$('.collapsible').collapsible({
-	accordion : false
-});
+refreshCollapsibles();
 $('.tooltipped').tooltip({delay: 50});

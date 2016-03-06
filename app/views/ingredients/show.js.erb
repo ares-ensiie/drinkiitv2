@@ -1,5 +1,6 @@
 $('#ingredients-container').html("<%= j (render 'ingredients') %>");
 initIngredients();
+
 var containerY = $("#ingredients-container").offset().top - 100;
 if (window.scrollY < containerY) {
 	$('html, body').animate({

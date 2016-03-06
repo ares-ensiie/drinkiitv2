@@ -1,0 +1,12 @@
+var color = 'blue';
+<% if !@success %>
+	color = 'red';
+<% end %>
+
+Materialize.toast('<%= j @message %>', 4000, color);
+<% if @success %>
+	resetButtonsState();
+	$('#stock-container').html("<%= j (render 'stocks') %>");
+	$('ul.tabs').tabs();
+	initButtonListener();
+<% end %>

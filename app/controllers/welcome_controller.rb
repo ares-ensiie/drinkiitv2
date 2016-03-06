@@ -7,18 +7,21 @@ class WelcomeController < ApplicationController
 
 	def index
 		@user = current_user
+		@categories = Category.all
 	end
 
 	def equipe
-		year = params[:year].to_i
-		if year == 0
-			year = 2015
-		end
-		@team = []
-		year_dir = "equipe/" + year.to_s + "-" + (year + 1).to_s 
-	    filenames=Dir["app/assets/images/" + year_dir + "/*.png"].sort.reverse
-		filenames.each do |filename|
-			@team << { "image" => year_dir + "/" + File.basename(filename), "name" => File.basename(filename, ".png")}	
+		@teams = []
+		for i in 2011..2015
+			year = i
+			team = []
+			year_dir = "equipe/" + year.to_s + "-" + (year + 1).to_s 
+		    filenames=Dir["app/assets/images/" + year_dir + "/*.png"].sort.reverse
+			filenames.each do |filename|
+				team << { "image" => year_dir + "/" + File.basename(filename), "name" => File.basename(filename, ".png")}	
+			end
+
+			@teams << { "year" => year.to_s + "-" + (year + 1).to_s, "team" => team }
 		end
   	end
 

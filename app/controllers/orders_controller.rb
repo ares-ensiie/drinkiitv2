@@ -66,6 +66,18 @@ before_action :set_order, only: [:take, :validate, :destroy_in_orders, :destroy_
 
   	def validate
   		set_success(true, "Commande archivée !")
+  		if @order.meal.standalone
+	  		stock = @order.meal.stock
+	  		if stock.auto_update
+	  			stock.update_attribute('quantity', stock.quantity - @order.quantity)
+	  		end
+	  	else
+	  		@order.meal.ingredients.each do |ingredient|
+	  			if ingredient.stock.auto_update
+	  				ingredient.stock.update_attribute('quantity', ingredient.stock.quantity - @order.quantity)
+	  			end
+	  		end
+	  	end
   		@user = @order.user
   		new_solde = @user.solde - @order.total
   		if !(@user.update_attribute('solde', new_solde) && @order.update_attribute('served', true))

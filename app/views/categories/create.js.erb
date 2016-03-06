@@ -6,5 +6,5 @@ var color = "blue"
 Materialize.toast("<%= j (@message) %>", 4000, color);
 <% if @success %>
 	$('#content').html("<%= j (render 'categories') %>");
-	init();
+	initCategories();
 <% end %>

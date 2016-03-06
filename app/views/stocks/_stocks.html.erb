@@ -1,0 +1,79 @@
+<div class="row header" id="nomargin">
+  <div class="col s3">Nom</div>
+  <div class="col s2">Quantité</div>
+  <div class="col s3">Unité</div>
+  <div class="col s2 center">Mise à jour Auto<i class="material-icons tooltipped no-cursor" data-position="top" data-delay="20" data-tooltip="La mise à jour automatique permet de mettre à jour les stocks d'un produit automatiquement lorsqu'il est commandé">info</i>
+  </div>
+  <div class="col s2 center">Actions</div>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <ul class="tabs">
+      <% if !@active.nil? %>
+        <% if @active == "ingredients" %>
+          <li class="tab col s6"><a href="#plats">Plats</a></li>
+          <li class="tab col s6"><a href="#ingredients" class="active">Ingredients</a></li>
+        <% else %>
+          <li class="tab col s6"><a href="#plats" class="active">Plats</a></li>
+          <li class="tab col s6"><a href="#ingredients">Ingredients</a></li>
+        <% end %>
+      <% else %>
+        <li class="tab col s6"><a href="#plats">Plats</a></li>
+        <li class="tab col s6"><a href="#ingredients">Ingredients</a></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div id="plats" class="col s12">
+    <div class="table striped">
+        <% @stocks_meal.each do |stock| %>
+          <div class="row" id="nomargin">        
+          <%= form_for stock, url: update_stock_path(:id => stock.id), remote: true do |f| %>
+            <div class="col s3"><div><%= stock.meal.description %></div></div>
+            <div class="col s2"><%= f.number_field :quantity, :step => '1' %></div>
+            <div class="col s3"><%= f.text_field :unit %></div>
+            <div class="col s2 center">
+              <%= f.check_box :auto_update, :id => stock.id %>
+              <label for=<%=stock.id%>></label>
+            </div>
+            <div class="col s2 center">
+              <button class="btn-floating waves-effect waves-circle waves-light tooltipped disabled" data-position="bottom" data-delay="20" data-tooltip="Appliquer les changements" type="submit" name="commit" disabled="disabled">
+                <i class="material-icons right">done</i>
+              </button>
+              <% if stock.quantity == 0 %>
+                <a class="btn-floating yellow tooltipped no-cursor" data-position="right" data-delay="20" data-tooltip="Rupture de stock" disabled="disabled"><i class="material-icons yellow">announcement</i></a>
+              <% end %>
+            </div>
+          <% end %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+
+  <div id="ingredients" class="col s12">
+    <div class="table striped">
+      <% @stocks_ingredient.each do |stock| %>
+        <div class="row" id="nomargin">        
+        <%= form_for stock, url: update_stock_path(:id => stock.id), remote: true do |f| %>
+          <div class="col s3"><div><%= stock.ingredient.ingredient_type.name %> : <%= stock.ingredient.name %></div></div>
+          <div class="col s2"><%= f.number_field :quantity, :step => '1' %></div>
+          <div class="col s3"><%= f.text_field :unit %></div>
+          <div class="col s2 center">
+              <%= f.check_box :auto_update, :id => stock.id %>
+              <label for=<%=stock.id%>></label>
+            </div>
+          <div class="col s2 center">
+            <button class="btn-floating waves-effect waves-circle waves-light tooltipped disabled" data-position="bottom" data-delay="20" data-tooltip="Appliquer les changements" type="submit" name="commit" disabled="disabled">
+              <i class="material-icons right">done</i>
+            </button> 
+            <% if stock.quantity == 0 %>
+              <a class="btn-floating yellow tooltipped no-cursor" data-position="right" data-delay="20" data-tooltip="Rupture de stock" disabled="disabled"><i class="material-icons yellow">announcement</i></a>
+            <% end %>
+          </div>
+        <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,7 @@ class MealsController < ApplicationController
     if signed_in?
       set_success(true, "Plat créé avec succès !")
       @meal = Meal.new(meal_params)
+      @meal.available = true
       if !params[:ingredient_types].nil?
         params[:ingredient_types].each do |ingredient|
           @meal.ingredient_types << IngredientType.find(ingredient)
@@ -20,6 +21,11 @@ class MealsController < ApplicationController
         set_success(false, get_error_message(@meal.errors, "Meal"))
       else
         if @meal.standalone
+          stock = Stock.new
+          stock.meal = @meal
+          stock.quantity = 0
+          stock.auto_update = true
+          stock.save
           @display = "standalone"
         else
           @display = "recipe"
@@ -39,7 +45,7 @@ class MealsController < ApplicationController
       else
         @display = "recipe"
       end
-      if @meal.destroy
+      if @meal.update_attribute('available', false)
         set_menu
       else
         set_success(false, get_error_message(@meal.errors, "Meal"))

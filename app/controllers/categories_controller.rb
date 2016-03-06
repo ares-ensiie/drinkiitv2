@@ -18,19 +18,19 @@ class CategoriesController < ApplicationController
 			@standalones = @category.meals.select { |meal| meal.standalone == true }
 			@composed = @category.meals.select { |meal| meal.standalone == false }
 
-      # Initialisation des meal pour les lignes d'ajout
-      @standalone = Meal.new
-      @standalone.category_id = @category.id
-      @standalone.standalone = true
-      @standalone.price = 1
+			# Initialisation des meal pour les lignes d'ajout
+			@standalone = Meal.new
+			@standalone.category_id = @category.id
+			@standalone.standalone = true
+			@standalone.price = 1
 
-      @meal = Meal.new
-      @meal.category_id = @category.id
-      @meal.standalone = false
-      @meal.price = 1
+			@meal = Meal.new
+			@meal.category_id = @category.id
+			@meal.standalone = false
+			@meal.price = 1
 
-      # Récupération des catégories d'ingrédients pour les potentielles nouvelles recettes
-      @ingredient_types = IngredientType.order('name')
+			# Récupération des catégories d'ingrédients pour les potentielles nouvelles recettes
+			@ingredient_types = IngredientType.order('name')
 		else
 			redirect_to root_path
 		end

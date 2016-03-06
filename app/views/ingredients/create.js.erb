@@ -2,7 +2,9 @@ var color = 'blue';
 <% if !@success %>
 	color = 'red';
 <% end %>
+
 Materialize.toast("<%= j @message %>", 4000, color);
+
 $('.tooltipped').tooltip('remove');
 $('#ingredients-container').html("<%= j (render 'ingredients') %>");
 initIngredients();

@@ -42,6 +42,11 @@ class IngredientsController < ApplicationController
 	      @ingredient = Ingredient.new(ingredient_params)
 	      if @ingredient.save
 	      	@type = @ingredient.ingredient_type
+	      	stock = Stock.new
+	      	stock.ingredient = @ingredient
+	      	stock.quantity = 0
+	      	stock.auto_update = false
+	      	stock.save
 	        set_show
 	      else
 	        set_success(false, get_error_message(@ingredient.errors, "Ingredient"))

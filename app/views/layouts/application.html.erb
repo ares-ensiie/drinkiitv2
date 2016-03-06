@@ -25,6 +25,7 @@
         <li class="divider"></li>
         <li><a href="/users">gestion des utilisateurs</a></li>
         <li><a href="/ingredients">gestion des ingrédients</a></li>
+        <li><a href="/stocks">Inventaire</a></li>
       <% end %>
     </ul>
   <nav class="white">
@@ -35,11 +36,11 @@
         <li class="star-icon"><%= image_tag "star.png" %></li>
         <li><a href="/">accueil</a></li>
         <li class="star-icon"><%= image_tag "star.png" %></li>
-        <li><a href="/equipe">l'équipe</a></li>
+        <li><a href="/equipe#2015-2016">l'équipe</a></li>
         <li class="star-icon"><%= image_tag "star.png" %></li>
         <li><a class="dropdown-button" href="#!" data-activates="dropdown-actions">actions<i class="material-icons right">arrow_drop_down</i></a></li>
         <li class="star-icon"><%= image_tag "star.png" %></li>
-        <li><a href="#">solde : <%= current_user.solde %> €</a></li>
+        <li><a href="#" class="no-cursor">solde : <%= current_user.solde %> €</a></li>
         <li class="star-icon"><%= image_tag "star.png" %></li>
       </ul>
       <ul class="side-nav" id="mobile">
@@ -51,8 +52,9 @@
           <li><a href="/orders/all">commandes du jour</a></li>
           <li><a href="/users">utilisateurs</a></li>
           <li><a href="/ingredients">ingrédients</a></li>
+          <li><a href="/stocks">inventaire</a></li>
         <% end %>
-        <li><a href="#">solde : <%= current_user.solde %> €</a></li>
+        <li><a href="#" class="no-cursor">solde : <%= current_user.solde %> €</a></li>
       </ul>
     </div>
   </nav>

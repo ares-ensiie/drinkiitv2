@@ -1,6 +1,4 @@
 $('#today-container').html("<%= j (render 'today') %>");
 $('#history-container').html("<%= j (render 'history') %>");
-$('.collapsible').collapsible({
-	accordion : false
-});
-initCheckBoxAjax();
+refreshCollapsibles();
+initCheckBoxAjax():

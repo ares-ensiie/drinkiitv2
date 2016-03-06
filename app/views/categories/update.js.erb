@@ -3,6 +3,7 @@ var color = "blue"
 	color = "red"
 <% end %>
 
-$('#content').html("<%= j (render 'categories') %>");
 Materialize.toast("<%= j (@message) %>", 4000, color);
-init();
+
+$('#content').html("<%= j (render 'categories') %>");
+initCategories();

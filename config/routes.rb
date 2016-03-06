@@ -51,6 +51,10 @@ Rails.application.routes.draw do
   get 'ingredienttype/new' => 'ingredients#newType', :as => 'new_type'
   delete 'ingredienttype/destroy' => 'ingredients#destroyType', :as => 'delete_type'
 
+  # StockController
+  patch '/stocks' => 'stocks#update', :as => 'update_stock'
+  get '/stocks' => 'stocks#index', :as => 'stocks'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

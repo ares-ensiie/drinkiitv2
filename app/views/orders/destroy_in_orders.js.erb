@@ -4,10 +4,9 @@ var color = 'blue'
 <% end %>
 
 Materialize.toast('<%= j @message %>', 4000, color);
+
 $('.tooltipped').tooltip('remove');
 $('#content').html("<%= j (render 'orders') %>");
-$('.collapsible').collapsible({
-	accordion : false
-});
+refreshCollapsibles();
 $('.tooltipped').tooltip({delay: 50});
 initCheckBoxAjax();

@@ -1,26 +1,49 @@
 <%= stylesheet_link_tag 'welcome' %>
-<div id="index-banner" class="parallax-container">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <br><br>
+
+<div class="slider parallax-container">
+  <ul class="slides">
+  <% @categories.each do |category| %>
+    <li>
+      <div class="parallax">
+        <%= image_tag category.image.url, :alt => "Image introuvable", :class => "backup_picture" %>
+      </div>
+      <div class="caption center-align">
         <h1 class="header center drinkiit-brown">Bienvenue sur Drinkiit</h1>
-        <!-- <h4 class="center white-text"><%=@user.fullname %></h2> -->
-        <div class="row center">
-          <h5 class="header col s12 light">le site de commande en ligne du célèbre club</h5>
-        </div>
+        <h3><%= category.name %></h3>
+        <h5 class="light grey-text text-lighten-3"><%= category.description %></h5>
+        <br>
         <div class="row center">
           <a href="/order/categories" id="btn-commander" class="btn-large waves-effect waves-light red">commander</a>
         </div>
-        <br><br>
-
       </div>
-    </div>
-    <div class="parallax">
-      <%= image_tag "background1.jpg" %>     
-    </div>
+    </li>
+  <% end %>
+  </ul>
 </div>
 
-<div class="container background" style="margin-top: 20px;">
+<% if @categories.empty? %>
+  <div id="index-banner" class="parallax-container">
+      <div class="section no-pad-bot">
+        <div class="container">
+          <br><br>
+          <h1 class="header center drinkiit-brown">Bienvenue sur Drinkiit</h1>
+          <div class="row center">
+            <h5 class="header col s12 light">le site de commande en ligne du célèbre club</h5>
+          </div>
+          <div class="row center">
+            <a href="/order/categories" id="btn-commander" class="btn-large waves-effect waves-light red">commander</a>
+          </div>
+          <br><br>
+
+        </div>
+      </div>
+      <div class="parallax">
+        <%= image_tag "background1.jpg" %>     
+      </div>
+  </div>
+<% end %>
+
+<div class="container background hoverable" style="margin-top: 20px;">
     <div class="section">
 
       <!--   Icon Section   -->
@@ -39,7 +62,7 @@
             <h2 class="center brown-text"><i class="material-icons">group</i></h2>
             <h5 class="center">Une équipe de choc</h5>
 
-            <p class="light">D'années en années une nouvelle équipe, composée principalement de 1As, se forme afin de vous servir tous les midis ! Voyez la composition de la nouvelle équipe <a href="/equipe">ici</a>.</p>
+            <p class="light">D'années en années une nouvelle équipe, composée principalement de 1As, se forme afin de vous servir tous les midis ! Voyez la composition de la nouvelle équipe <a href="/equipe#2015-2016">ici</a>.</p>
           </div>
         </div>
       </div>
