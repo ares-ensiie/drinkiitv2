@@ -3,6 +3,7 @@
 <head>
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
   <title>Drinkiit</title>
+  <link rel="icon" href="https://lh3.googleusercontent.com/QFCTWQeAF9P5JHpsDs-z0rY6nmqJJw6qzbdMhBLBNza08uPsVwlJOy4pKUWzrrT8GSg=w300">
 
   <!-- StyleSheets -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
@@ -36,11 +37,11 @@
         <li class="star-icon"><%= image_tag "star.png" %></li>
         <li><a href="/">accueil</a></li>
         <li class="star-icon"><%= image_tag "star.png" %></li>
-        <li><a href="/equipe#2015-2016">l'équipe</a></li>
+        <li><a href="/equipe">l'équipe</a></li>
         <li class="star-icon"><%= image_tag "star.png" %></li>
         <li><a class="dropdown-button" href="#!" data-activates="dropdown-actions">actions<i class="material-icons right">arrow_drop_down</i></a></li>
         <li class="star-icon"><%= image_tag "star.png" %></li>
-        <li><a href="#" class="no-cursor">solde : <%= current_user.solde %> €</a></li>
+        <li><a class="no-cursor" id="clickCount">solde : <%= current_user.solde %> €</a></li>
         <li class="star-icon"><%= image_tag "star.png" %></li>
       </ul>
       <ul class="side-nav" id="mobile">
@@ -77,7 +78,11 @@
     <div class="footer-copyright row">
       <p class="col s12 center-align white-text">Site web réalisé par Lucas Mull</p>
     </div>
-  </footer> 
+  </footer>
+
+  <div style="display: none;">
+    <%= link_to 'lol', top_up_path, :id => 'topup', :remote => true %>
+  </div>
 
 </body>
 </html>

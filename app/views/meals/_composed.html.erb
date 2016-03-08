@@ -6,7 +6,9 @@
 	<div class="row" id="nomargin">
 		<ul class="tabs">
 		<% @composed.each do |meal| %>
-			<li class="tab col s3"><a href=<%= "\##{meal.id}" %>><%= meal.description %></a></li>
+			<% if meal.available %>
+				<li class="tab col s3"><a href=<%= "\##{meal.id}" %>><%= meal.description %></a></li>
+			<% end %>
 		<% end %>
 		</ul>
 		<% @composed.each do |meal| %>
@@ -19,7 +21,7 @@
 					<% meal.ingredient_types.each do |ingredient_type| %>
 						<div class="input-field col s6">
 							<% if ingredient_type.multiple %>							
-								<select multiple name=<%= "ingredients[#{ingredient_type.id}]" %> id=<%= "ingredients_#{ingredient_type.id}" %>>
+								<select multiple="multiple" name=<%= "ingredients[#{ingredient_type.id}][]" %> id=<%= "ingredients_#{ingredient_type.id}" %>>
 									<option value="" disabled selected><%= "Choisissez votre #{ingredient_type.name}" %></option>
 									<% ingredient_type.ingredients.each do |ingredient| %>
 										<% if ingredient.hasStock? %>
@@ -95,7 +97,12 @@
 					<%= f.number_field :price, :step => 0.1 %>€
 				</div>
 				<div class="input-field col s5">
-				<%= select_tag "ingredient_types", options_from_collection_for_select(@ingredient_types, "id", "name"), multiple: true, include_blank: "Choisissez la recette" %>
+				<select multiple="multiple" name=<%= "ingredient_types[]" %> id=<%= "ingredients_types" %>>
+					<option value="" disabled selected><%= "Composez la recette" %></option>
+					<% @ingredient_types.each do |ingredient| %>
+						<option value=<%= "#{ingredient.id}" %>><%= ingredient.name %></option>
+					<% end %>
+				</select>
 				</div>
 				<div class="col s3 center">
 					<button class="btn-floating waves-effect waves-circle waves-light tooltipped" data-position="bottom" data-delay="20" data-tooltip="Valider la création" type="submit" name="commit">

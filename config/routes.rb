@@ -17,9 +17,10 @@ Rails.application.routes.draw do
   delete '/users' => 'users#destroy', :as => 'delete_user'
   post '/users' => 'users#create', :as => 'create_user'
   get 'users/new' => 'users#new', :as => 'new_user'
+  get 'users/topup' => 'users#topUp', :as => 'top_up'
 
   # CategoryController
-  get 'order/categories' => 'categories#index'
+  get 'order/categories' => 'categories#index', :as => 'categories'
   get 'order/categories/content' => 'categories#show', :as => 'show_category'
   post 'order/categories/create' => 'categories#create', :as => 'create_category'
   patch 'order/categories' => 'categories#update', :as => 'update_category'

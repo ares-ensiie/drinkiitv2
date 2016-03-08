@@ -2,18 +2,30 @@
 
 <div class="slider parallax-container">
   <ul class="slides">
+  <% if @easter_egg %>
+    <li>
+      <div class="parallax">
+        <%= image_tag "val.png" %>
+      </div>
+      <div class="caption center-align">
+        <h1 class="drinkiit-brown">Bienvenue sur Drinkiit</h1>
+        <h4 class="light grey-text text-lighten-3">Vous allez apprécier votre sandwich</h4>
+        <br>
+      </div>
+    </li>
+  <% end %>
   <% @categories.each do |category| %>
     <li>
       <div class="parallax">
         <%= image_tag category.image.url, :alt => "Image introuvable", :class => "backup_picture" %>
       </div>
       <div class="caption center-align">
-        <h1 class="header center drinkiit-brown">Bienvenue sur Drinkiit</h1>
-        <h3><%= category.name %></h3>
-        <h5 class="light grey-text text-lighten-3"><%= category.description %></h5>
+        <!-- <h1 class="header center drinkiit-brown">Bienvenue sur Drinkiit</h1> -->
+        <h1 class="drinkiit-brown"><%= category.name %></h1>
+        <h4 class="light grey-text text-lighten-3"><%= category.description %></h4>
         <br>
-        <div class="row center">
-          <a href="/order/categories" id="btn-commander" class="btn-large waves-effect waves-light red">commander</a>
+        <div class="row center" style="margin-top: 10px;">
+          <a href=<%= categories_path(:id => category.id) %> id="btn-commander" class="btn-large waves-effect waves-light red">commander</a>
         </div>
       </div>
     </li>

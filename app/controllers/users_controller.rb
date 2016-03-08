@@ -61,6 +61,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def topUp
+    current_user.update_attribute('solde', current_user.solde + 2)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

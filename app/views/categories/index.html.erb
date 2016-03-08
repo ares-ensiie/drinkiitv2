@@ -5,9 +5,22 @@
 	<%= render 'categories' %>
 </div>
 
-<div class="divider red lighten-3"></div>
 <div id="meal-container" class="container">
 	<div id="loading" class="center">
 		<%= image_tag "ajax-loader.gif", class:"wait" %>
 	</div>
+	<% if !@category.nil? %>
+		<%= render 'meals/meals' %>
+	<% end %>
 </div>
+
+<% if !@category.nil? %>
+	<script>
+		var containerY = $("#meal-container").offset().top - 100;
+		if (window.scrollY < containerY) {
+			$('html, body').animate({
+		    	scrollTop: containerY
+			}, 500);
+		}
+	</script>
+<% end %>

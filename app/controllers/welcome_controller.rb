@@ -8,6 +8,12 @@ class WelcomeController < ApplicationController
 	def index
 		@user = current_user
 		@categories = Category.all
+		rand = Random.rand(0..3)
+		print rand
+		@easter_egg = false
+		if rand == 2
+			@easter_egg = true
+		end
 	end
 
 	def equipe
